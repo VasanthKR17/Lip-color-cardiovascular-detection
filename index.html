@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heart Disease Risk Detector (Lip Analysis)</title>
+  
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <span class="icon">🫀</span>
+        <h1>CardioRisk Vision</h1>
+      </div>
+      <p class="subtitle">AI-assisted analysis of lip coloration to detect signs of cyanosis.</p>
+    </header>
+
+    <main class="app-content">
+      
+      <!-- Input Section -->
+      <section class="input-section card">
+        <h2>Input Method</h2>
+        <p class="helper-text">Select an image or use your camera in a well-lit environment.</p>
+
+        <div class="input-actions">
+          <!-- File Upload -->
+          <label class="action-btn upload-btn">
+            <span class="icon">📁</span>
+            <span>Upload Image</span>
+            <input type="file" id="fileUpload" accept="image/*" style="display: none;">
+          </label>
+          
+          <!-- Webcam -->
+          <button class="action-btn camera-btn" id="cameraBtn">
+            <span class="icon">📷</span>
+            <span id="cameraBtnText">Use Webcam</span>
+          </button>
+        </div>
+
+        <div class="video-container hidden" id="videoContainer">
+          <video id="inputVideo" autoplay playsinline></video>
+          <button id="captureBtn" class="capture-btn">Take Photo</button>
+        </div>
+      </section>
+
+      <!-- Processing Status -->
+      <div id="statusMessage" class="status-message hidden">
+        <div class="spinner"></div>
+        <span id="statusText">Analyzing image...</span>
+      </div>
+
+      <!-- Results Section -->
+      <section id="resultsSection" class="results-section hidden">
+        
+        <div class="analysis-grid">
+          <!-- Image Display -->
+          <div class="card img-card">
+            <h3>Analyzed Image</h3>
+            <div class="canvas-wrapper">
+              <canvas id="outputCanvas"></canvas>
+            </div>
+            <p class="caption">Detected facial landmarks</p>
+          </div>
+
+          <!-- Statistics -->
+          <div class="card stats-card">
+            <h3>Color Analytics</h3>
+            <div class="color-swatch-container">
+              <div id="colorSwatch" class="color-swatch"></div>
+              <div class="color-values">
+                <p><strong>Average Tint</strong></p>
+                <p id="rgbValue" class="mono-text">RGB(0, 0, 0)</p>
+                <p id="hsvValue" class="mono-text">HSV(0.0°, 0.0%, 0.0%)</p>
+              </div>
+            </div>
+
+            <div class="diagnosis-wrapper">
+              <h3>Diagnosis</h3>
+              <div id="diagnosisCard" class="diagnosis-card">
+                <span id="diagnosisIcon" class="diag-icon">✅</span>
+                <div class="diag-text">
+                  <h4 id="diagnosisTitle">Normal</h4>
+                  <p id="diagnosisDesc">Healthy pink lips detected. No visible signs of cyanosis.</p>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
