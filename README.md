@@ -46,3 +46,21 @@ The platform will display the isolated lip cutout, your HSV analytics, and the A
 
 ---
 **Disclaimer:** *This application is exclusively designed as a preliminary screening and technological demonstration prototype. It should not be used as a substitute for professional medical advice, diagnosis, or treatment.*
+## How It Works
+1. Detect face using MediaPipe FaceMesh
+2. Identify lip region using facial landmarks
+3. Extract lip color features (HSV/RGB)
+4. Analyze color intensity and patterns
+5. Classify into Normal or High Risk category
+
+## Results
+(Add screenshots here showing input image and output result)
+
+## Future Improvements
+- Improve dataset with real medical images
+- Implement deep learning model (CNN)
+- Add real-time webcam detection
+- Enhance accuracy with better feature extraction
+
+## Disclaimer
+This project is for educational and research purposes only. It is not intended for medical diagnosis.
